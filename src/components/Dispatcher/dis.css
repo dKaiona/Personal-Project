@@ -1,0 +1,208 @@
+body {
+    background-image: url(https://images.unsplash.com/photo-1422246654994-34520d5a0340?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Merriweather', serif;
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 20px;
+    font-size: 25px;
+    font-weight: bolder;
+    color: rgba(240, 248, 255, 0.808);
+    margin: 5px;
+    text-shadow: 2px 3px 1px black;
+    text-decoration: none;
+}
+.navDisplay {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1px;
+    
+
+}
+
+.navLinks {
+    display: flex;
+    text-decoration: none;
+}
+
+.sampleImg {
+    width: 5vw;
+    color: rgba(247, 247, 247, 0.911);
+    text-shadow: 5em 5em 5em 5em #ffffff
+}
+
+.infoDis{
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    background-color: rgba(151, 140, 140, 0.688);
+    padding-top: 1.5em;
+    padding: 12px;
+    margin: 5px;
+    font-size: .9em;
+    color: rgba(240, 248, 255, 0.808);
+    letter-spacing: .1em;
+    border-radius: .5em;
+    text-shadow: 2px 2px 1px rgb(14, 3, 0);
+    height: 52vh;
+    border: 2px solid rgba(255, 255, 255, 0.692);
+    animation: yourAnimation .3s   linear;
+
+}
+@keyframes yourAnimation{
+    0%{
+        transform: scale(0);
+        }
+    15%{
+        transform: scale(0.1);
+        }
+    30%{
+        transform: scale(0.3);
+        }
+    45%{
+        transform: scale(0.5);
+        }
+    60%{
+        transform: scale(0.7);
+        }
+    75%{
+        transform: scale(0.9);
+        }
+    90%{
+        transform: rotate(xx) scale(1);
+        }
+    100%{
+        transform: rotate(xx) scale(1);
+        }
+}
+
+
+
+.graphDisplay {
+    height: 26vh;
+    width: 80vw;
+    margin-left: 9vw;
+    margin-right: 0em;
+    margin-bottom: 1%;
+    
+}
+
+.sectionScroll {
+ height: 50vh;
+ overflow:auto;
+ width: 18%
+
+}
+
+.sectionScroll::-webkit-scrollbar-thumb {
+    height: .1rem;
+    width: .2rem ;
+    scroll-behavior: smooth;
+    display: run-in;
+    
+}
+
+.updateInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.listDisplay {
+    background-color: rgba(0, 0, 0, 0.793);
+    border-radius: 1em;
+   padding-left: 1.3em;
+   margin-right: .5em;
+   border: 2px solid rgba(255, 255, 255, 0.692);
+   list-style-type: circle;
+}
+
+.disRun {
+    width: .8em;
+    background-color: rgba(192, 192, 192, 0.281);
+    padding: .09em;
+    border: .1rem solid rgba(255, 255, 255, 0.5);
+    border-radius: .5em;
+    margin-top: .43em
+}
+
+.itemBack {
+    width: 100%;
+    height: 92%;
+    background-size: cover;
+    border-radius: 2.9em;
+    opacity: 0.87;
+    background-image: url(https://images.unsplash.com/photo-1553413077-190dd305871c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80);
+}
+
+.driverBack {
+    width: 100%;
+    height: 92%;
+    background-size: cover;
+    border-radius: 2.9em;
+    opacity: 0.87;
+    background-image: url(https://images.unsplash.com/photo-1551218611-f568f5597a45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80);
+}
+
+.orderBack {
+    width: 100%;
+ height: 92%;
+ background-size: cover;
+ border-radius: 2.9em;
+ opacity: 0.87;
+ background-image: url(https://images.unsplash.com/photo-1552623082-052dd60ef441?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80);
+}
+
+
+.custBack {
+ width: 100%;
+ height: 92%;
+ background-size: cover;
+ border-radius: 2.9em;
+ opacity: 0.87;
+ background-image: url( https://images.unsplash.com/photo-1543525324-9146d43c2a4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80);
+}
+
+@media (max-width: 1380px) {
+    .infoDis {
+        font-size: .7em
+    }
+  }
+
+
+
+
+
+
+
+
+/* 
+@keyframes yourAnimation{
+    0%{
+        transform: rotate(xx);
+        opacity: 0.1;
+        }
+    25%{
+        opacity: 0.3;
+        }
+    50%{
+        opacity: 0.5;
+        }
+    75%{
+        opacity: 0.7;
+        }
+    100%{
+        transform: rotate(xx);
+        opacity: 1;
+        }
+}
+
+.elementToAnimate{
+    animation: yourAnimation 1.5s infinite 0s linear; */

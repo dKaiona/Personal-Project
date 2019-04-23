@@ -1,0 +1,22 @@
+.homeMain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5%
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.run {
+    width: 11em;
+    background-color: rgba(192, 192, 192, 0.281);
+    padding: 1em;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 1em
+}

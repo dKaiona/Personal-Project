@@ -1,0 +1,36 @@
+.driverNavbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 20px;
+    font-size: 25px;
+    font-weight: bolder;
+    color: rgba(240, 248, 255, 0.808);
+    margin: 5px;
+    text-shadow: 2px 1px 1px black;
+}
+
+.driverInfoDis {
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    background-color: rgba(99, 88, 165, 0.61);
+    padding-top: 1.5em;
+    padding: 12px;
+    margin: 5px;
+    font-size: 1em;
+    color: rgba(240, 248, 255, 0.808);
+    letter-spacing: .15em;
+    border-radius: .5em;
+    text-shadow: 2px 2px 1px rgb(65, 14, 1);
+    height: 35em;
+}
+
+.orders {
+    background-color: rgba(0, 0, 0, 0.363);
+    height: 30em;
+    width: 28%;
+    padding: 2em;
+    border-radius: 2em;
+    margin: 1em
+}
