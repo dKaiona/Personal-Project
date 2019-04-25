@@ -5,6 +5,7 @@ const session = require('express-session')
 const authCtrl = require('./serverCtrls/authCtrl')
 const disCtrl = require('./serverCtrls/disCtrl')
 const aws = require('aws-sdk')
+const path = require('path');
 
 
 const app = express()
@@ -18,6 +19,7 @@ massive(CONNECTION_STRING)
 })
 .catch(err => console.log('db not connected', err))
 
+app.use( express.static( `${__dirname}/../build` ) );
 app.use(express.json())
 app.use(session({
     secret: SECRET,
@@ -78,6 +80,11 @@ app.get('/api/sign-s3', (req, res) => {
         return res.send(returnData)
     })
 })
+
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 app.listen(SERVER_PORT, () => {
     console.log(`Server flying on Port ${SERVER_PORT}`)

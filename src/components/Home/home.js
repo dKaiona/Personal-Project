@@ -1,54 +1,55 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import {Link} from 'react-router-dom'
+
 import '../Home/Csshome.css'
 import styled, {ThemeProvider} from 'styled-components'
-import logo from '../../pics/movers-Logo.png'
+
 
     const Title = styled.span`
-    font-size: 3em;
+    font-size: 3.5vw;
     font-weight: bold;
-    
-    padding: 30px;
-    margin: 5px;
-    
+    padding: 1vw;
+    margin: 1vw;
     border-radius: 1em;
     text-shadow: 2px 1px 1px black;
-    letter-spacing: 8px;
-    color: ${props => props.theme.main}`;
-
+    letter-spacing: .5vw;
+    color:rgba(240, 248, 255, 0.808);
+      @media (max-width: 700px) {
+       
+      }
+`;
     
     //Define our button, but with the use of props.theme this time
 const Button = styled.button`
-  font-size: 2em;
+  font-size: 2.5vw;
     background-color: rgba(99, 88, 165, 0.223);
   border-radius: 3px;
-  margin: 10px;
-  padding: 10px
+  margin: 1vw;
+  padding: 1vw;
   border-radius: 1em;
   text-shadow: 2px 1px 1px black;
   letter-spacing: 1px;
   /* Color the border and text with theme.main */
   color: ${props => props.theme.main};
   border: 2px solid ${props => props.theme.main};
+  @media (max-width: 700px) {
+   
+  }
 `;
 
 const Sinput = styled.input`
-width: 12em;
+width: 16.5vw;
 background-color: rgba(99, 88, 165, 0.123);
 color: rgba(245, 243, 243, 0.89);
-font-size: 1.2rem;
+font-size: 2.5vw;
 font-family: 'Orbitron', sans-serif;
 padding: .1em;
 text-align: center;
-
 margin: .2rem; 
 border-radius: 1rem;
 text-shadow: 2px 1px 1px black;
 @media (max-width: 700px) {
-  width: 8em;
-  font-size:1rem;
-  padding: .1em;
+  
 }
 `;
 
