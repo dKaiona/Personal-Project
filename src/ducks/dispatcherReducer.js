@@ -3,17 +3,19 @@ import axios from 'axios'
 const inState = {
     items: [],
     drivers: [],
-    cust: []
+    cust: [],
+    orders: []
 }
 
 //action types
 const GET_ITEMS = 'GET_ITEMS'
 const GET_DRIVERS = 'GET_DRIVERS'
 const GET_CUST = 'GET_CUST'
+const GET_ORDERS = 'GET_ORDERS'
 const DELETE_ITEM = 'DELETE_ITEM'
 const DELETE_DRIVER = 'DELETE_DRIVER'
 const DELETE_CUST = 'DELETE_CUST'
-const UPDATE_CUST = 'UPDATE_CUST'
+const UPDATE_ITEM = 'UPDATE_ITEM'
 
 // action Creators
 
@@ -50,6 +52,17 @@ export function getCust() {
     }
 }
 
+export function getOrders() {
+    let orders = axios.get('/order/info')
+    .then(res => {
+        return res.data
+    })
+    return {
+        type: GET_ORDERS,
+        payload: orders
+    }
+}
+
 export function deleteItem(item) {
     let items = axios.delete(`/inventory/info/${item.item_id}`)
     .then(res => {
@@ -83,15 +96,15 @@ export function deleteCust(custId) {
     }
 }
 
-export function updateCust(custId) {
-    console.log(custId, 55)
-    let cust = axios.put(`/cust/info/${custId.cust_id}`)
+export function updateItem(itemId, itemName, itemCount, specs) {
+    console.log(itemId, itemName, itemCount, specs, 55)
+    let items = axios.put(`/inventory/info/${itemId}/${itemName}/${itemCount}/${specs}`)
     .then(res => {
         return res.data
     })
     return {
-        type: UPDATE_CUST,
-        payload: cust
+        type: UPDATE_ITEM,
+        payload: items
     }
 }
 
@@ -114,6 +127,11 @@ export default function reducer(state = inState, action) {
         return {...state}
         case GET_CUST + '_FULFILLED':
         return {...state, cust: action.payload}
+        //get order data
+        case GET_ORDERS + '_PENDING':
+        return {...state}
+        case GET_ORDERS + '_FULFILLED':
+        return {...state, orders: action.payload}
         //delete item
         case DELETE_ITEM + '_PENDING':
         return {...state}
@@ -130,10 +148,10 @@ export default function reducer(state = inState, action) {
         case DELETE_CUST + '_FULFILLED':
         return {...state, cust: action.payload}
         //update Cust
-        case UPDATE_CUST + '_PENDING':
+        case UPDATE_ITEM + '_PENDING':
         return {...state}
-        case UPDATE_CUST + '_FULFILLED':
-        return {...state, cust: action.payload}
+        case UPDATE_ITEM + '_FULFILLED':
+        return {...state, items: action.payload}
 
         default:
         return state

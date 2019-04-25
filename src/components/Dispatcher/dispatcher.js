@@ -2,11 +2,12 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import '../Dispatcher/dis.css'
 import styled, {ThemeProvider} from 'styled-components'
-import {getItems, getDrivers, getCust, deleteItem, deleteDriver, deleteCust, updateCust} from './../../ducks/dispatcherReducer'
+import {getItems, getDrivers, getCust, deleteItem, deleteDriver, deleteCust, getOrders} from './../../ducks/dispatcherReducer'
 import {connect} from 'react-redux'
 import Item from './dis_infodisplay/Item'
 import Driver from './dis_infodisplay/Driver'
 import Customer from './dis_infodisplay/Customer'
+import Orders from './dis_infodisplay/Orders'
 
 const Title = styled.span`
 font-size: 1.5em;
@@ -18,7 +19,15 @@ border-radius: 2em;
 text-shadow: 2px 1px 1px black;
 letter-spacing: .1em;
 color: "rgba(240, 248, 255, 0.808)";
-`
+@media (max-width: 1200px) {
+  font-size: 1.2em;
+};
+@media (max-width: 900px ) {
+font-size: .9em;}
+@media (max-width: 700px) {
+  font-size: .6em
+}
+`;
 
 
 const Button = styled.button`
@@ -32,6 +41,15 @@ const Button = styled.button`
   border: 1px solid;
   border-top: none;
   border-bottom: none;
+  @media (max-width: 1200px) {
+    font-size: 1em;
+  }
+  @media (max-width: 900px) {
+    font-size: .7em;
+  }
+  @media (max-width: 700px) {
+    font-size: .5em
+  }
   color: ${props => props.theme.main}
 `;
 
@@ -65,6 +83,7 @@ Button.defaultProps = {
       await this.props.getItems()
       await this.props.getDrivers()
       await this.props.getCust()
+      await this.props.getOrders()
     }
 
     custEdit = () => {
@@ -88,7 +107,7 @@ Button.defaultProps = {
     }  
 
     render() {
-        console.log(this.props.items)
+        console.log(this.props)
         return  (            
           
           <ThemeProvider theme ={theme}>
@@ -112,7 +131,7 @@ Button.defaultProps = {
                   <section className = 'sectionScroll'>
                   <Title onClick={() => this.inventoryEdit()}>INVENTORY</Title>
                     <span>📋</span>
-                    <div className='itemBack'>
+                    <div className='itemBack' onClick={() => this.inventoryEdit()}>
                     </div>
                   </section>
                 ) : (
@@ -136,7 +155,7 @@ Button.defaultProps = {
                   <section className = 'sectionScroll'>
                   <Title onClick={() => this.driverEdit()}>DRIVERS</Title>
                     <span>🚚</span>
-                    <div className='driverBack'>
+                    <div className='driverBack' onClick={() => this.driverEdit()}>
                     </div>
                   </section>
                 
@@ -152,22 +171,21 @@ Button.defaultProps = {
                     <section className = 'sectionScroll'>
                     <Title onClick={() => this.orderEdit()}>ORDERS</Title>
                       <span>📋</span>
-                      <div className='orderBack'>
+                      <div className='orderBack' onClick={() => this.orderEdit()}>
                     </div>
                     </section>
                   ) : (                   
                     <section className = 'sectionScroll'>
                    <Title onClick={() => this.orderEdit()}>ORDERS</Title>
                    <span>📋</span>
-                 {this.props.items.map(item => {
+                 {this.props.orders.map(orders => {
                     return (
-                    <div key={item.item_id}>
-                    <Item item={item}/>
+                    <div key={orders.order_id}>
+                    <Orders orders={orders}/>
                  </div>
                  )
                     })
                 }
-                 
                 </section>
                   )}
 
@@ -176,7 +194,7 @@ Button.defaultProps = {
                     <section className = 'sectionScroll'>
                     <Title onClick={() => this.custEdit()}>CUSTOMERS</Title>
                       <span>👥</span>
-                      <div className='custBack'>
+                      <div className='custBack' onClick={() => this.custEdit()}>
                       </div>
                     </section>
                 ) : (
@@ -199,4 +217,4 @@ function mapStateToProps(reduxState) {
     return reduxState.dispatcher
 }
 
-export default connect(mapStateToProps, {getItems, getDrivers, getCust, deleteItem, deleteDriver, deleteCust, updateCust})(Dispatcher)
+export default connect(mapStateToProps, {getItems, getDrivers, getCust, deleteItem, deleteDriver, deleteCust, getOrders})(Dispatcher)

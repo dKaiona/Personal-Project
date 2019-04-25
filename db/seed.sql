@@ -56,3 +56,6 @@ CREATE TABLE "customer" (
 ALTER TABLE "orders" ADD CONSTRAINT "orders_fk0" FOREIGN KEY ("item_id") REFERENCES "inventory"("item_id");
 ALTER TABLE "orders" ADD CONSTRAINT "orders_fk1" FOREIGN KEY ("cust_id") REFERENCES "customer"("cust_id");
 ALTER TABLE "orders" ADD CONSTRAINT "orders_fk2" FOREIGN KEY ("user_id") REFERENCES "user"("user_id");
+
+
+

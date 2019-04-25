@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getDrivers} from '../../../ducks/dispatcherReducer'
+import {getDrivers, deleteDriver} from '../../../ducks/dispatcherReducer'
 import styled, {ThemeProvider} from 'styled-components'
 
 const Sinput = styled.input`
@@ -135,4 +135,4 @@ function mapStateToProps(reduxState) {
     return reduxState.dispatcher
 }
 
-export default connect(mapStateToProps, {getDrivers})(Driver)
+export default connect(mapStateToProps, {getDrivers, deleteDriver})(Driver)

@@ -3,6 +3,10 @@ import axios from 'axios'
 import {Link} from 'react-router-dom'
 import '../Add-Inventory/addIn.css'
 import styled, {ThemeProvider} from 'styled-components'
+import Dropzone from 'react-dropzone'
+import {GridLoader} from 'react-spinners'
+import { v4 as randomString} from 'uuid'
+
 
   const Sinput = styled.input`
   width: 22%;
@@ -76,38 +80,111 @@ export default class Inventory extends Component {
             itemName: '',
             itemCount: '',
             itemSpecs: '',
-            file: null
-    
+            isUploading: false,
+            url:'http://via.placeholder.com/450x450'
             
+          }
+          this.addItem = this.addItem.bind(this)
         }
-        this.addItem = this.addItem.bind(this)
-    }
+        //file: null
     async addItem() {
-        const {itemName, itemCount, itemSpecs, file} = this.state
-        const res = await axios.post('/inventory/info', {itemName, itemCount, itemSpecs, file})
+        const {itemName, itemCount, itemSpecs, url} = this.state
+        const res = await axios.post('/inventory/info', {itemName, itemCount, itemSpecs, url})
         console.log(res.data)
         if (res.data) this.props.history.push('/dispatcher')
         else alert(`Failed to add ${itemName}`)
-    }
+    
+    
+      }
+      
+       getSignedRequest = ([file]) => {
+        const filename = `${randomString()}-${file.name.replace(/\s/g, '-')}`
+  
+        axios.get('/api/sign-s3', {
+          params: {
+            'file-name': filename,
+            'file-type': file.type
+          }
+        }).then( (res) => {
+          const { signedRequest, url } = res.data
+          this.uploadFile(file, signedRequest, url)
+        }).catch( err => {
+          console.log(err, 'hflash;of')
+  
+        })
+      }
+  
+     uploadFile = (file, signedRequest, url) => {
+        const options = {
+          headers: {
+            'Content-Type': file.type,
+          }
+        }
+        axios.put(signedRequest, file, options)
+        .then(res => {
+          this.setState({url})
+          console.log(res)
+        })
+        .catch(err => {
+          this.setState({isUploading: false,})
+          if (err) {
+            alert('Your request for a signed URL failed with a status 403')
+          } else{
+            alert('error')
+          }
+        })
+      }
 
     render() {
+      console.log()
         return(
-            <ThemeProvider theme={theme}>
-            <div className='main'>
+    <ThemeProvider theme ={theme}>
+      <div className='main'>
                
-                <Title>Item Name</Title>
-                <Sinput type='text' onChange={(e) => this.setState({itemName: e.target.value})} value={this.state.itemName} />
-                <Title>Item Count</Title>
-                <Sinput type='number' onChange={(e) => this.setState({itemCount: e.target.value})} value={this.state.itemCount} />
-                <Title>Item Specs.</Title>
-                <Sinput type='text' onChange={(e) => this.setState({itemSpecs: e.target.value})} value={this.state.itemSpecs} />
-                <Title>Item Image</Title>
-                <Sinput type='file' onChange={(e) => this.setState({file: URL.createObjectURL(e.target.files[0])})} />
-                <img src={this.state.file} className= 'sampleImg' alt='sample'/>
-               <Button onClick={() => this.addItem()}>Add Item</Button>
-               <Link to ={'/dispatcher'}><Button>⇦</Button></Link>
-            </div>
-            </ThemeProvider>
-        )
-    }
+        <Title>Item Name</Title>
+        <Sinput type='text' onChange={(e) => this.setState({itemName: e.target.value})} value={this.state.itemName} />
+      <Title>Item Count</Title>
+        <Sinput type='number' onChange={(e) => this.setState({itemCount: e.target.value})} value={this.state.itemCount} />
+        <Title>Item Specs.</Title>
+        <Sinput type='text' onChange={(e) => this.setState({itemSpecs: e.target.value})} value={this.state.itemSpecs} />
+        <Title>Item Image</Title>
+  <img src ={this.state.url} alt='' width='100px'/>
+  <Dropzone 
+  onDropAccepted={this.getSignedRequest}
+  style={{
+    position: 'relative',
+    width: 200,
+    height: 200,
+    borderWidth: 7,
+    marginTop: 100,
+    borderColor: 'rgb(102, 102, 102)',
+    borderStyle: 'dashed',
+    borderRadius: 5,
+    display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: 28,
+  }}
+  accept='image/*'
+  multiple={false}>
+  {({getRootProps, getInputProps}) => (
+    <section>
+    <div {...getRootProps()}>
+    <input {...getInputProps()} />
+    <Title>Click or Drag</Title>
+    </div>
+    </section>
+  )}
+  </Dropzone>
+    
+      <Button onClick={() => this.addItem()}>Add Item</Button>
+      <Link to ={'/dispatcher'}><Button>⇦</Button></Link>
+  </div>
+        </ThemeProvider>
+
+)
 }
+}
+// {() => this.state.isUploading ? <GridLoader/> : <p>Drop File or Click Here</p>}
+{/* <Sinput type='file' onChange={(e) => this.setState({url: URL.createObjectURL(e.target.files[0])})} />
+<img src={this.state.url} className= 'sampleImg' alt='sample'/> */}

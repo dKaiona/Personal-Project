@@ -31,18 +31,7 @@ padding: .5em
 color: ${props => props.theme.main}
 `;
 
-    const Title = styled.span`
-    font-size: 3em;
-    font-weight: bold;
-    text-decoration: underline;
-    text-decoration-color: rgba(255, 174, 0, 0.611);
-    padding: 30px;
-    margin: 5px;
-    background-color: rgba(99, 88, 165, 0.523);
-    border-radius: 1em;
-    text-shadow: 2px 1px 1px black;
-    letter-spacing: 8px;
-    color: ${props => props.theme.main}`;
+    
 
     
     //Define our button, but with the use of props.theme this time

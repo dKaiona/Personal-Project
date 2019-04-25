@@ -1,12 +1,12 @@
 module.exports = {
     newItem: async (req, res) => {
-        const {itemName, itemCount, itemSpecs, file} = req.body
+        const {itemName, itemCount, itemSpecs, url} = req.body
         const db = req.app.get('db')
         const ItemArr = await db.find_by_itemName([itemName])
         if (ItemArr[0]) {
             return res.status(200).send({message: 'Item already exists'})
     }
-    let newItemArr = await db.create_item(itemName, itemCount, itemSpecs, file)
+    let newItemArr = await db.create_item(itemName, itemCount, itemSpecs, url)
    res.status(200).send(newItemArr)
     
 },
@@ -66,12 +66,20 @@ deleteCust: async (req, res) => {
     .catch(err => res.status(500).send(err, 'delete cust failed in DisCtrl'))
 },
 
-updateCust : async (req, res) => {
-    let {id} = req.params
+updateItem : async (req, res) => {
+    let {itemId, itemName, itemCount, specs} = req.params
+    console.log(itemId, itemName, itemCount, specs, 'In my server')
     const db = await req.app.get('db')
-    db.update_cust(id)
-    .then(cust => res.status(200).send(cust))
+    db.update_item(itemId, itemName, itemCount, specs)
+    .then(item => res.status(200).send(item))
     .catch(err => res.status(500).send(err, 'update cust failed in DisCtrl'))
+},
+
+getOrders : async (req, res) => {
+    const db = await req.app.get('db')
+    db.get_orders()
+    .then(orders => res.status(200).send(orders))
+    .catch(err => res.status(500).send(err, 'orders get failed in DisCtrl'))
 }
 
 }     

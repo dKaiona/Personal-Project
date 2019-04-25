@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
-import axios from 'axios'
 import styled, {ThemeProvider} from 'styled-components'
+
 import {connect} from 'react-redux'
-import {getItems, deleteItem} from '../../../ducks/dispatcherReducer'
+import {getItems, deleteItem, updateItem} from '../../../ducks/dispatcherReducer'
 
 const Sinput = styled.input`
-width: 12em;
+width: 70%;
 background-color: rgba(99, 88, 165, 0.123);
 color: rgba(245, 243, 243, 0.89);
 font-size: 1.2rem;
@@ -16,34 +16,27 @@ text-align: center;
 margin: .2rem; 
 border-radius: 1rem;
 text-shadow: 2px 1px 1px black;
+@media (max-width: 900px) {
+  width: 7em;
+  font-size:.8rem;
+}
 @media (max-width: 700px) {
-  width: 8em;
-  font-size:1rem;
-  padding: .1em;
+  width: 4em;
+  font-size:.1rem;
 }
 `;
 
 const EditText = styled.span`
-
 font-size: 2em;
-
-
 padding: .5em
 color: ${props => props.theme.main}
 `;
 
-    const Title = styled.span`
-    font-size: 3em;
-    font-weight: bold;
-    text-decoration: underline;
-    text-decoration-color: rgba(255, 174, 0, 0.611);
-    padding: 30px;
-    margin: 5px;
-    background-color: rgba(99, 88, 165, 0.523);
-    border-radius: 1em;
-    text-shadow: 2px 1px 1px black;
-    letter-spacing: 8px;
-    color: ${props => props.theme.main}`;
+   const ButtonWrap = styled.div`
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   `
 
     
     //Define our button, but with the use of props.theme this time
@@ -77,6 +70,7 @@ Button.defaultProps = {
 constructor(props) {
     super(props)
     this.state = {
+    itemId: this.props.item.item_id,  
     itemName: this.props.item.item_name,
     itemCount: this.props.item.item_count,
     specs: this.props.item.item_specs,
@@ -96,9 +90,12 @@ inventoryEdit = () => {
     })
   }
 
+  
+
 
 render() {
-     
+     console.log(this.props, 'in render item.js')
+     const {itemId, itemName, itemCount, specs} = this.state
         return (
             <div>
 
@@ -111,10 +108,10 @@ render() {
       <EditText>Name</EditText>
       <Sinput type ='text' value = {`${this.state.itemName}`} onChange={this.handleChange} name = 'itemName'/>
      <EditText>Count</EditText> 
-      <Sinput type ='text' value ={this.state.itemCount}/>
+      <Sinput type ='text' value ={this.state.itemCount} onChange={this.handleChange} name = 'itemCount'/>
       <EditText>Specs.</EditText>
-      <Sinput type ='text' value ={this.state.specs}/>
-      <Button onClick={() => this.inventoryEdit()}>Update Item</Button>
+      <Sinput type ='text' value ={this.state.specs} onChange={this.handleChange} name = 'specs'/>
+      <Button onClick={() => this.props.updateItem(itemId, itemName, itemCount, specs)}>Update Item</Button>
       <Button  onClick={() => this.props.deleteItem(this.props.item)}>Delete Item</Button>
       <Button onClick={() => this.inventoryEdit()}>⇦</Button>
      </div>
@@ -123,9 +120,11 @@ render() {
   <li>Item name : {this.props.item.item_name}</li>
   <li>Item Count : {this.props.item.item_count}</li>
   <li>Specs : {this.props.item.item_specs}</li>
-  <img src ={this.props.item.item_img} alt='item' className='sampleImg'/>
-      <Button onClick={() => this.props.deleteItem(this.props.item)}>Delete Item</Button>
-  <Button onClick={() => this.inventoryEdit()}>Edit</Button>
+  <img src ={this.props.item.item_img} alt='item' className='sampleImg' />
+
+  <ButtonWrap>
+  <Button onClick={() => this.inventoryEdit()}>Update</Button>
+  </ButtonWrap>
   </div>
     )}
   </ul>
@@ -140,4 +139,4 @@ render() {
             return reduxState.dispatcher
 }
 
-export default connect(mapStateToProps, {getItems, deleteItem})(Inventory)
+export default connect(mapStateToProps, {getItems, deleteItem, updateItem})(Inventory)
