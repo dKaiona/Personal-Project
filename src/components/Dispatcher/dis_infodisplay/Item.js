@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import styled, {ThemeProvider} from 'styled-components'
-
 import {connect} from 'react-redux'
 import {getItems, deleteItem, updateItem} from '../../../ducks/dispatcherReducer'
 
@@ -12,7 +11,6 @@ font-size: 1.2rem;
 font-family: 'Orbitron', sans-serif;
 padding: .1em;
 text-align: center;
-
 margin: .2rem; 
 border-radius: 1rem;
 text-shadow: 2px 1px 1px black;
@@ -28,7 +26,7 @@ text-shadow: 2px 1px 1px black;
 
 const EditText = styled.span`
 font-size: 2em;
-padding: .5em
+padding: .5em;
 color: ${props => props.theme.main}
 `;
 
@@ -42,7 +40,7 @@ color: ${props => props.theme.main}
     //Define our button, but with the use of props.theme this time
     const Button = styled.button`
     font-size: 1em;
-      background-color: rgba(99, 88, 165, 0.223);
+    background-color: rgba(99, 88, 165, 0.223);
     border-radius: 3px;
     cursor:pointer; 
     border-radius: 1em;

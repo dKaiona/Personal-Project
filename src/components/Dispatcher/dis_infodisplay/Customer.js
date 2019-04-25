@@ -4,14 +4,13 @@ import {getCust} from '../../../ducks/dispatcherReducer'
 import styled, {ThemeProvider} from 'styled-components'
 
 const Sinput = styled.input`
-width: 12em;
+width: 70%;
 background-color: rgba(99, 88, 165, 0.123);
 color: rgba(245, 243, 243, 0.89);
-font-size: 1rem;
+font-size: 1.2rem;
 font-family: 'Merriweather', serif;
 padding: .1em;
 text-align: center;
-
 margin: .2rem; 
 border-radius: 1rem;
 text-shadow: 2px 1px 1px black;
@@ -23,15 +22,16 @@ text-shadow: 2px 1px 1px black;
 `;
 
 const EditText = styled.span`
-
-font-size: 1em;
-
-
+font-size: 2em;
 padding: .5em
 color: ${props => props.theme.main}
 `;
 
-    
+const ButtonWrap = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+`
 
     
     //Define our button, but with the use of props.theme this time
@@ -65,57 +65,77 @@ class Customer extends Component {
 constructor(props) {
     super(props)
     this.state = {
-        custName: '',
-        custAddress: '',
-        custPhone: '',
-        custEmail: '',
+        custLast: this.props.custs.Last_name,
+        custFirst: this.props.custs.first_name,
+        custAddress: this.props.custs.cust_Address,
+        custPhone: this.props.custs.cust_phone,
+        custEmail: this.props.custs.cust_email,
+        custId: this.props.custs.cust_id,
         custEdit:false,
     }
    
 }
- 
+
 custEdit = () => {
     const {custEdit} = this.state
     this.setState({custEdit: !custEdit})
   }
 
-    render() {
-        const Cust = this.props.cust.map((cust) => (
-            <div key={cust.cust_id}>
-            
-           <ul className= 'listDisplay'>
-           {this.state.custEdit ? (
-          <div className= 'updateInfo'>
-            
-            <EditText>Name</EditText>
-            <Sinput type ='text' value = {this.state.name} onChange={(e) => {this.setState({name: e.target.value})}}/>
-           <EditText>📍</EditText> 
-            <Sinput type ='text' value ={cust.cust_Address}/>
-            <EditText>📞</EditText>
-            <Sinput type ='text' value ={cust.cust_phone}/>
-            <EditText>📧</EditText>
-            <Sinput type ='text' value ={cust.cust_email}/>
-            <Button onClick={() => this.props.updateCust(cust)}>Update Customer</Button>
-            <Button onClick={() => this.props.deleteCust(cust)}>Delete Customer</Button>
-            <Button onClick={() => this.custEdit()}>⇦</Button>
-           </div>
-           ) : (
-             <div>
-            <li> Name :{` ${cust.first_name} ${cust.Last_name}`}</li>
-           <li>📍: {cust.cust_Address}</li>
-           <li>📞: {cust.cust_phone}</li>
-           <li>📧: {cust.cust_email}</li>
-           <Button onClick={() => this.custEdit()}>Edit</Button>
-             </div>
-           )}
-           </ul>
-           </div>
-))
+  handleChange = e => {
+    let {name, value} = e.target
+    this.setState({
+      [name]: value
+    })
+  }
 
+
+
+//     cust: Array(4)
+// 0:
+// Last_name: "Felixson"
+// cust_Address: "844 Mass Rd SLC Ut"
+// cust_email: "missT@yipyap.com"
+// cust_id: 23
+// cust_phone: "801-876-2143"
+// first_name: "Jill
+
+    render() {
+      console.log(this.props.cust, 'in render C.js')
+        const {custLast, custFirst, custAddress, custPhone, custEmail, custId} = this.state
         return(
             <ThemeProvider theme={theme}>
-            <div className='main'>
-               {Cust}
+            <div className='main' key={this.props.cust.cust_id}>
+            <ul className='listDisplay'>
+            {this.state.custEdit ? (
+               <div className= 'updateInfo'>
+               <EditText>FirstName</EditText>
+               <Sinput type ='text' value = {`${this.state.custFirst}`} onChange={this.handleChange} name = 'custFirst'/>
+               <EditText>LastName</EditText>
+               <Sinput type ='text' value = {`${this.state.custLast}`} onChange={this.handleChange} name = 'custLast'/>
+              <EditText>Address</EditText> 
+               <Sinput type ='text' value ={this.state.custAddress} onChange={this.handleChange} name = 'custAddress'/>
+               <EditText>Phone</EditText>
+               <Sinput type ='text' value ={this.state.custPhone} onChange={this.handleChange} name = 'custPhone'/>
+               <EditText>Email</EditText>
+               <Sinput type ='text' value = {`${this.state.custEmail}`} onChange={this.handleChange} name = 'custEmail'/>
+               <Button onClick={() => this.props.updateItem(custId, custFirst, custLast, custAddress, custPhone, custEmail)}>Update Item</Button>
+               <Button  onClick={() => this.props.deleteItem(this.props.item)}>Delete Item</Button>
+               <Button onClick={() => this.custEdit()}>⇦</Button>
+              </div>
+            ) : (
+              <div>
+                <li>Name: {`${this.props.custs.first_name}${this.props.custs.Last_name}`}</li>
+                <li>Address: {this.props.custs.cust_address}</li>
+                <li>Phone: {this.props.custs.cust_phone}</li>
+                <li>Handle: {this.props.custs.cust_email}</li>
+                <ButtonWrap>
+                <Button onClick={() => this.custEdit()}>Update</Button>
+                </ButtonWrap>
+              </div>
+            )
+          }
+          </ul>
+
             </div>
             </ThemeProvider>
         )
@@ -127,3 +147,7 @@ function mapStateToProps(reduxState) {
 }
 
 export default connect(mapStateToProps, {getCust})(Customer)
+
+{/* <li>📍: {cust.cust_Address}</li>
+           <li>📞: {cust.cust_phone}</li>
+           <li>📧: {cust.cust_email}</li> */}

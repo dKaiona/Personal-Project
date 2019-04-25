@@ -10,7 +10,7 @@ import Customer from './dis_infodisplay/Customer'
 import Orders from './dis_infodisplay/Orders'
 
 const Title = styled.span`
-font-size: 1.5em;
+font-size: 2vw;
 font-weight: bold;
 padding: 3px;
 margin: 5px;
@@ -23,23 +23,27 @@ color: "rgba(240, 248, 255, 0.808)";
   font-size: 1.2em;
 };
 @media (max-width: 900px ) {
-font-size: .9em;}
+font-size: 4vw;}
 @media (max-width: 700px) {
-  font-size: .6em
+  font-size: 5vw
+}
+@media (max-width: 500px) {
+  font-size 4vw
 }
 `;
 
 
 const Button = styled.button`
-  font-size: 1.2em;
+  font-size: 2vw;
   background: transparent;
   border-radius: 1px;
   cursor:pointer; 
   text-shadow: 2px 1px 1px black;
   margin: .1em;
-  margin-bottom: .55em;
+  margin-bottom: .35vw;
   border: 1px solid;
   border-top: none;
+  color: ${props => props.theme.main};
   border-bottom: none;
   @media (max-width: 1200px) {
     font-size: 1em;
@@ -50,7 +54,6 @@ const Button = styled.button`
   @media (max-width: 700px) {
     font-size: .5em
   }
-  color: ${props => props.theme.main}
 `;
 
 // We are passing a default theme for Buttons that arent wrapped in the ThemeProvider
@@ -127,6 +130,7 @@ Button.defaultProps = {
                 </nav>
                 <div className='graphDisplay'></div>
                 <div className='infoDis'>
+                
                 {this.state.inventoryEdit ? (
                   <section className = 'sectionScroll'>
                   <Title onClick={() => this.inventoryEdit()}>INVENTORY</Title>
@@ -135,7 +139,6 @@ Button.defaultProps = {
                     </div>
                   </section>
                 ) : (
-                 
                 <section className = 'sectionScroll'>
                    <Title onClick={() => this.inventoryEdit()}>INVENTORY</Title>
                    <span>📋</span>
@@ -147,10 +150,8 @@ Button.defaultProps = {
                  )
                     })
                 }
-                 
                 </section>
                   )}
-
                 {this.state.driverEdit ? (
                   <section className = 'sectionScroll'>
                   <Title onClick={() => this.driverEdit()}>DRIVERS</Title>
@@ -163,10 +164,15 @@ Button.defaultProps = {
                 <section className = 'sectionScroll'>
                 <Title onClick={() => this.driverEdit()}>DRIVERS</Title>
                 <span>🚚</span>
-                <Driver></Driver>
+                {this.props.drivers.map(driver => {
+                  return (
+                  <div key ={driver.user_id}>
+                  <Driver driver={driver}></Driver>
+                  </div>
+                  )
+                })}
                 </section>
                 )}
-
                   {this.state.orderEdit ? (
                     <section className = 'sectionScroll'>
                     <Title onClick={() => this.orderEdit()}>ORDERS</Title>
@@ -201,7 +207,13 @@ Button.defaultProps = {
                 <section className = 'sectionScroll'>
                 <Title onClick={() => this.custEdit()}>CUSTOMERS</Title>
                 <span>👥</span>
-                <Customer></Customer>
+                {this.props.cust.map(custs => {
+                  return (
+                    <div key={custs.cust_id} >
+                    <Customer custs={custs}></Customer>
+                    </div>
+                    )
+                })}
                 </section>
                 )}
                 </div>
@@ -218,3 +230,4 @@ function mapStateToProps(reduxState) {
 }
 
 export default connect(mapStateToProps, {getItems, getDrivers, getCust, deleteItem, deleteDriver, deleteCust, getOrders})(Dispatcher)
+

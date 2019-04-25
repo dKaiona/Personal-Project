@@ -6,7 +6,7 @@ import styled, {ThemeProvider} from 'styled-components'
 
 
     const Title = styled.span`
-    font-size: 3.5vw;
+    font-size: 3vw;
     font-weight: bold;
     padding: 1vw;
     margin: 1vw;
@@ -14,17 +14,20 @@ import styled, {ThemeProvider} from 'styled-components'
     text-shadow: 2px 1px 1px black;
     letter-spacing: .5vw;
     color:rgba(240, 248, 255, 0.808);
-      @media (max-width: 700px) {
-       
+      @media (max-width: 900px) {
+       font-size: 6vw
+      };
+      @media (max-width: 500px) {
+        font-size 8vw
       }
 `;
     
     //Define our button, but with the use of props.theme this time
 const Button = styled.button`
-  font-size: 2.5vw;
+  font-size: 2vw;
     background-color: rgba(99, 88, 165, 0.223);
   border-radius: 3px;
-  margin: 1vw;
+  margin: 3vw;
   padding: 1vw;
   border-radius: 1em;
   text-shadow: 2px 1px 1px black;
@@ -32,8 +35,15 @@ const Button = styled.button`
   /* Color the border and text with theme.main */
   color: ${props => props.theme.main};
   border: 2px solid ${props => props.theme.main};
-  @media (max-width: 700px) {
-   
+  @media (max-width: 900px) {
+   font-size 4vw;
+   margin: 4vw;
+   padding: 2vw;
+  };
+  @media (max-width: 500px) {
+    font-size 6vw;
+    margin: 4.5vw;
+    padding: 2.5vw
   }
 `;
 
@@ -41,16 +51,21 @@ const Sinput = styled.input`
 width: 16.5vw;
 background-color: rgba(99, 88, 165, 0.123);
 color: rgba(245, 243, 243, 0.89);
-font-size: 2.5vw;
+font-size: 2vw;
 font-family: 'Orbitron', sans-serif;
 padding: .1em;
 text-align: center;
 margin: .2rem; 
 border-radius: 1rem;
 text-shadow: 2px 1px 1px black;
-@media (max-width: 700px) {
-  
-}
+@media (max-width: 900px) {
+  font-size: 4vw;
+  width: 29vw;
+};
+@media (max-width: 500px) {
+  font-size 6vw;
+  width: 40vw
+};
 `;
 
 // We are passing a default theme for Buttons that arent wrapped in the ThemeProvider
