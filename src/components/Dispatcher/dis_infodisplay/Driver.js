@@ -94,7 +94,7 @@ driverEdit = () => {
 
         return(
             <ThemeProvider theme={theme}>
-            <div className='main' key ={this.props.driver.user_id}>
+            <div key ={this.props.driver.user_id}>
             <ul className='listDisplay'>
             {this.state.driverEdit ? (
                <div className= 'updateInfo'>

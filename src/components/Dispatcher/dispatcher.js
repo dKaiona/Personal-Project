@@ -10,10 +10,10 @@ import Customer from './dis_infodisplay/Customer'
 import Orders from './dis_infodisplay/Orders'
 
 const Title = styled.span`
-font-size: 2vw;
+font-size: 2.3vw;
 font-weight: bold;
-padding: 3px;
-margin: 5px;
+padding: .4vw;
+margin: .4vw;
 cursor: pointer;
 border-radius: 2em;
 text-shadow: 2px 1px 1px black;
@@ -28,13 +28,13 @@ font-size: 4vw;}
   font-size: 5vw
 }
 @media (max-width: 500px) {
-  font-size 4vw
+  font-size 3vw
 }
 `;
 
 
 const Button = styled.button`
-  font-size: 2vw;
+  font-size: 2.3vw;
   background: transparent;
   border-radius: 1px;
   cursor:pointer; 
@@ -53,6 +53,9 @@ const Button = styled.button`
   }
   @media (max-width: 700px) {
     font-size: .5em
+  }
+  @media (max-width: 500px) {
+    font-size: 2vw
   }
 `;
 
@@ -115,7 +118,7 @@ Button.defaultProps = {
           
           <ThemeProvider theme ={theme}>
 
-            <div>
+            <div className='main'>
                 <nav className='navbar'>
                 <div className = 'navDisplay'>
                 <Title>DISPATCHER</Title>

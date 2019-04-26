@@ -104,7 +104,7 @@ custEdit = () => {
         const {custLast, custFirst, custAddress, custPhone, custEmail, custId} = this.state
         return(
             <ThemeProvider theme={theme}>
-            <div className='main' key={this.props.cust.cust_id}>
+            <div key={this.props.cust.cust_id}>
             <ul className='listDisplay'>
             {this.state.custEdit ? (
                <div className= 'updateInfo'>
