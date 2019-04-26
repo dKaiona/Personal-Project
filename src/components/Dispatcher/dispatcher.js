@@ -28,7 +28,7 @@ font-size: 4vw;}
   font-size: 5vw
 }
 @media (max-width: 500px) {
-  font-size 3vw
+  font-size 6vw
 }
 `;
 
@@ -36,11 +36,11 @@ font-size: 4vw;}
 const Button = styled.button`
   font-size: 2.3vw;
   background: transparent;
-  border-radius: 1px;
+  border-radius: 8px;
   cursor:pointer; 
   text-shadow: 2px 1px 1px black;
   margin: .1em;
-  margin-bottom: .35vw;
+  margin-bottom: .7vw;
   border: 1px solid;
   border-top: none;
   color: ${props => props.theme.main};
@@ -55,7 +55,8 @@ const Button = styled.button`
     font-size: .5em
   }
   @media (max-width: 500px) {
-    font-size: 2vw
+    font-size: 4.1vw
+    margin-top: 4vw
   }
 `;
 

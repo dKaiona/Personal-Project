@@ -4,10 +4,10 @@ import {connect} from 'react-redux'
 import {getItems, deleteItem, updateItem} from '../../../ducks/dispatcherReducer'
 
 const Sinput = styled.input`
-width: 70%;
+width: 15vw;
 background-color: rgba(99, 88, 165, 0.123);
 color: rgba(245, 243, 243, 0.89);
-font-size: 1.2rem;
+font-size: 1.5vw;
 font-family: 'Orbitron', sans-serif;
 padding: .1em;
 text-align: center;
@@ -19,8 +19,10 @@ text-shadow: 2px 1px 1px black;
   font-size:.8rem;
 }
 @media (max-width: 700px) {
-  width: 4em;
-  font-size:.1rem;
+ width: 35vw;
+}
+@media (max-width: 500) {
+  width: 45vw;
 }
 `;
 
