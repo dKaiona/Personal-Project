@@ -11,6 +11,7 @@ import Orders from './dis_infodisplay/Orders'
 
 const Title = styled.span`
 font-size: 2.3vw;
+transition: 1.5s
 font-weight: bold;
 padding: .4vw;
 margin: .4vw;
@@ -23,9 +24,9 @@ color: "rgba(240, 248, 255, 0.808)";
   font-size: 1.2em;
 };
 @media (max-width: 900px ) {
-font-size: 4vw;}
+font-size: 3vw;}
 @media (max-width: 700px) {
-  font-size: 5vw
+  font-size: 4vw
 }
 @media (max-width: 500px) {
   font-size 6vw
@@ -35,30 +36,47 @@ font-size: 4vw;}
 
 const Button = styled.button`
   font-size: 2.3vw;
+  transition: 1.3s
   background: transparent;
   border-radius: 8px;
   cursor:pointer; 
   text-shadow: 2px 1px 1px black;
   margin: .1em;
   margin-bottom: .7vw;
-  border: 1px solid;
-  border-top: none;
+  border: .1vw groove;
+   border-top: none;
   color: ${props => props.theme.main};
   border-bottom: none;
   @media (max-width: 1200px) {
     font-size: 1em;
   }
   @media (max-width: 900px) {
-    font-size: .7em;
+    font-size: 2.5vw;
   }
   @media (max-width: 700px) {
-    font-size: .5em
+    font-size: 2.3vw
   }
   @media (max-width: 500px) {
-    font-size: 4.1vw
+    font-size: 3.7vw
     margin-top: 4vw
   }
 `;
+
+const Wrapperhover = styled.div`
+  &:hover ${Title}  {
+    text-shadow: 3px 3px 5px lightblue;
+    transition: .7s;
+  }
+`
+const WrapperButton = styled.div`
+&:hover ${Button}  {
+  text-shadow: 3px 3px 5px lightblue;
+  border: .2vw groove lightblue;
+  border-top: none;
+  border-bottom: none;
+  transition: .6s;
+}
+`
 
 // We are passing a default theme for Buttons that arent wrapped in the ThemeProvider
 Button.defaultProps = {
@@ -114,7 +132,6 @@ Button.defaultProps = {
     }  
 
     render() {
-        console.log(this.props)
         return  (            
           
           <ThemeProvider theme ={theme}>
@@ -123,13 +140,21 @@ Button.defaultProps = {
                 <nav className='navbar'>
                 <div className = 'navDisplay'>
                 <Title>DISPATCHER</Title>
-                <img className='disRun' src='https://svgsilh.com/svg_v2/2027575.svg'/>
+                <img className='disRun' src='https://svgsilh.com/svg_v2/2027575.svg' alt='logo'/>
                 </div>
                 <div className='navLinks'>
+                <WrapperButton>
                 <Link to = {'/inventory'}><Button>Add Inventory</Button></Link>
+                </WrapperButton>
+                <WrapperButton>
                 <Link to = {'/order'}><Button>Create Order</Button></Link>
+                </WrapperButton>
+                <WrapperButton>
                 <Link to = {'/AddUser'}><Button>Add User</Button></Link>
-                <Link to = {'/'}><Button>Back</Button></Link>
+                </WrapperButton>
+                <WrapperButton>
+                <Link to = {'/'}><Button>Log Out</Button></Link>
+                </WrapperButton>
                 </div>
                 </nav>
                 <div className='graphDisplay'></div>
@@ -137,15 +162,19 @@ Button.defaultProps = {
                 
                 {this.state.inventoryEdit ? (
                   <section className = 'sectionScroll'>
+                  <Wrapperhover>
                   <Title onClick={() => this.inventoryEdit()}>INVENTORY</Title>
-                    <span>📋</span>
+                    <span role='img'>📋</span>
+                  </Wrapperhover>
                     <div className='itemBack' onClick={() => this.inventoryEdit()}>
                     </div>
                   </section>
                 ) : (
                 <section className = 'sectionScroll'>
+                <Wrapperhover>
                    <Title onClick={() => this.inventoryEdit()}>INVENTORY</Title>
-                   <span>📋</span>
+                   <span role='img'>📋</span>
+                </Wrapperhover>
                  {this.props.items.map(item => {
                     return (
                     <div key={item.item_id}>
@@ -158,16 +187,20 @@ Button.defaultProps = {
                   )}
                 {this.state.driverEdit ? (
                   <section className = 'sectionScroll'>
+                  <Wrapperhover>
                   <Title onClick={() => this.driverEdit()}>DRIVERS</Title>
-                    <span>🚚</span>
+                    <span role='img'>🚚</span>
+                  </Wrapperhover>
                     <div className='driverBack' onClick={() => this.driverEdit()}>
                     </div>
                   </section>
                 
                 ) : (
                 <section className = 'sectionScroll'>
+                <Wrapperhover>
                 <Title onClick={() => this.driverEdit()}>DRIVERS</Title>
-                <span>🚚</span>
+                <span role='img'>🚚</span>
+                </Wrapperhover>
                 {this.props.drivers.map(driver => {
                   return (
                   <div key ={driver.user_id}>
@@ -179,15 +212,19 @@ Button.defaultProps = {
                 )}
                   {this.state.orderEdit ? (
                     <section className = 'sectionScroll'>
+                    <Wrapperhover>
                     <Title onClick={() => this.orderEdit()}>ORDERS</Title>
-                      <span>📋</span>
+                      <span role='img'>📋</span>
+                    </Wrapperhover>
                       <div className='orderBack' onClick={() => this.orderEdit()}>
                     </div>
                     </section>
                   ) : (                   
                     <section className = 'sectionScroll'>
+                    <Wrapperhover>
                    <Title onClick={() => this.orderEdit()}>ORDERS</Title>
-                   <span>📋</span>
+                   <span role='img'>📋</span>
+                    </Wrapperhover>
                  {this.props.orders.map(orders => {
                     return (
                     <div key={orders.order_id}>
@@ -202,15 +239,19 @@ Button.defaultProps = {
                 {this.state.custEdit ? (
               
                     <section className = 'sectionScroll'>
+                    <Wrapperhover>
                     <Title onClick={() => this.custEdit()}>CUSTOMERS</Title>
-                      <span>👥</span>
+                      <span role='img'>👥</span>
+                    </Wrapperhover>
                       <div className='custBack' onClick={() => this.custEdit()}>
                       </div>
                     </section>
                 ) : (
                 <section className = 'sectionScroll'>
+                <Wrapperhover>
                 <Title onClick={() => this.custEdit()}>CUSTOMERS</Title>
-                <span>👥</span>
+                <span role='img'>👥</span>
+                </Wrapperhover>
                 {this.props.cust.map(custs => {
                   return (
                     <div key={custs.cust_id} >

@@ -109,7 +109,7 @@ constructor(props) {
             <div>
 
             <header className='header'>
-            <img className='run' src='https://svgsilh.com/svg_v2/2027575.svg'/>
+            <img className='run' src='https://svgsilh.com/svg_v2/2027575.svg' alt='logo'/>
             </header>              
             <div className='homeMain'>
                 <Title>Handle</Title>

@@ -94,7 +94,6 @@ inventoryEdit = () => {
 
 
 render() {
-     console.log(this.props, 'in render item.js')
      const {itemId, itemName, itemCount, specs} = this.state
         return (
             <div>

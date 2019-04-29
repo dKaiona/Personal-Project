@@ -88,7 +88,6 @@ export default class AddDriver extends Component {
     async register() {
         const {lastName, handle, phoneNumber, password, isDispatcher} = this.state
         const res = await axios.post('/auth/register', {lastName, handle, phoneNumber, password, isDispatcher})
-        console.log(res.data)
         if (res.data) this.props.history.push('/dispatcher')
         else this.props.history.push('/driver')
     }

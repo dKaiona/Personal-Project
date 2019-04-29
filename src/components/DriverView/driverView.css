@@ -1,0 +1,49 @@
+.driverNavbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    font-size: 25px;
+    font-weight: bolder;
+    color: rgba(240, 248, 255, 0.808);
+    margin: 5px;
+    text-shadow: 2px 1px 1px black;
+}
+
+.driverInfoDis {
+   
+    background-color:rgba(151, 140, 140, 0.688);
+    padding-top: 1.5em;
+    padding: 12px;
+    margin: 5px;
+    font-size: 1em;
+    color: rgba(240, 248, 255, 0.808);
+    letter-spacing: .15em;
+    border-radius: .5em;
+    text-shadow: 2px 1px 1px black;
+    height: 58vw;
+}
+
+.orders {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.363);
+    padding: .5vw;
+    border-radius: 2em;
+    margin: 1em
+}
+
+.orderInfoDis {
+    background-color:rgba(151, 140, 140, 0.688);
+    padding-top: 1.5em;
+    padding: .5vw;
+    margin: .5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size: 1.5vw;
+    color: rgba(240, 248, 255, 0.808);
+    letter-spacing: .15em;
+    border-radius: .5em;
+    border: .2vw groove rgba(0, 0, 0, 0.76);
+    height: 35em;
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Route, Switch} from 'react-router-dom'
 import Home from '../components/Home/home';
-import Driver from './../components/Driver/driver'
+import Driver from './../components/DriverView/driverView'
 import Dispatcher from '../components/Dispatcher/dispatcher';
 import Order from '../components/Create-Order/createOrder';
 import Inventory from '../components/Add-Inventory/addInventory';

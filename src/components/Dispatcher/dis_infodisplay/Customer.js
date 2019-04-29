@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getCust} from '../../../ducks/dispatcherReducer'
 import styled, {ThemeProvider} from 'styled-components'
+import { SSL_OP_SINGLE_DH_USE } from 'constants';
+
 
 const Sinput = styled.input`
 width: 70%;
@@ -20,6 +22,7 @@ text-shadow: 2px 1px 1px black;
   padding: .1em;
 }
 `;
+
 
 const EditText = styled.span`
 font-size: 2em;
@@ -100,7 +103,6 @@ custEdit = () => {
 // first_name: "Jill
 
     render() {
-      console.log(this.props.cust, 'in render C.js')
         const {custLast, custFirst, custAddress, custPhone, custEmail, custId} = this.state
         return(
             <ThemeProvider theme={theme}>
@@ -148,6 +150,6 @@ function mapStateToProps(reduxState) {
 
 export default connect(mapStateToProps, {getCust})(Customer)
 
-{/* <li>📍: {cust.cust_Address}</li>
+/* <li>📍: {cust.cust_Address}</li>
            <li>📞: {cust.cust_phone}</li>
-           <li>📧: {cust.cust_email}</li> */}
+           <li>📧: {cust.cust_email}</li> */

@@ -89,7 +89,6 @@ driverEdit = () => {
   }
 
     render() {
-      console.log(this.props, 'in Driver.js')
       const {userId, handle, lastName, driverPhone} = this.state
 
         return(
@@ -104,8 +103,8 @@ driverEdit = () => {
                <Sinput type ='text' value ={this.state.lastName} onChange={this.handleChange} name = 'lastName'/>
                <EditText>Specs.</EditText>
                <Sinput type ='text' value ={this.state.driverPhone} onChange={this.handleChange} name = 'driverPhone'/>
-               <Button onClick={() => this.props.updateItem(userId, handle, lastName, driverPhone)}>Update Item</Button>
-               <Button  onClick={() => this.props.deleteItem(this.props.item)}>Delete Item</Button>
+               <Button onClick={() => this.props.updateItem(userId, handle, lastName, driverPhone)}>Update Driver</Button>
+               <Button  onClick={() => this.props.deleteDriver(this.props.driver)}>Delete Driver</Button>
                <Button onClick={() => this.driverEdit()}>⇦</Button>
               </div>
             ) : (

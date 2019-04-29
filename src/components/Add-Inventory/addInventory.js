@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom'
 import '../Add-Inventory/addIn.css'
 import styled, {ThemeProvider} from 'styled-components'
 import Dropzone from 'react-dropzone'
-import {GridLoader} from 'react-spinners'
 import { v4 as randomString} from 'uuid'
 
 
@@ -28,13 +27,10 @@ import { v4 as randomString} from 'uuid'
   `;
 
     const Title = styled.span`
-    font-size: 1.8em;
+    font-size: 2vw;
     font-weight: bold;
-    
-    
     padding: 10px;
     margin: 1em;
-    
     border-radius: 1em;
     text-shadow: 2px 1px 1px black;
     letter-spacing: 8px;
@@ -56,6 +52,12 @@ const Button = styled.button`
   /* Color the border and text with theme.main */
   color: ${props => props.theme.main};
   border: 2px solid ${props => props.theme.main};
+`;
+const EditText = styled.span`
+font-size: 2em;
+padding: .5em;
+text-shadow: 2px 1px 1px black;
+color: ${props => props.theme.main};
 `;
 
 
@@ -90,7 +92,6 @@ export default class Inventory extends Component {
     async addItem() {
         const {itemName, itemCount, itemSpecs, url} = this.state
         const res = await axios.post('/inventory/info', {itemName, itemCount, itemSpecs, url})
-        console.log(res.data)
         if (res.data) this.props.history.push('/dispatcher')
         else alert(`Failed to add ${itemName}`)
     
@@ -123,7 +124,6 @@ export default class Inventory extends Component {
         axios.put(signedRequest, file, options)
         .then(res => {
           this.setState({url})
-          console.log(res)
         })
         .catch(err => {
           this.setState({isUploading: false,})
@@ -136,7 +136,7 @@ export default class Inventory extends Component {
       }
 
     render() {
-      console.log()
+      
         return(
     <ThemeProvider theme ={theme}>
       <div className='main'>
@@ -148,7 +148,7 @@ export default class Inventory extends Component {
         <Title>Item Specs.</Title>
         <Sinput type='text' onChange={(e) => this.setState({itemSpecs: e.target.value})} value={this.state.itemSpecs} />
         <Title>Item Image</Title>
-  <img src ={this.state.url} alt='' width='100px'/>
+  <img src ={this.state.url} alt='' width='100px' style={{borderRadius: 35}}/>
   <Dropzone 
   onDropAccepted={this.getSignedRequest}
   style={{
@@ -161,6 +161,7 @@ export default class Inventory extends Component {
     borderStyle: 'dashed',
     borderRadius: 5,
     display: 'flex',
+    
   justifyContent: 'center',
   alignItems: 'center',
   fontSize: 28,
@@ -171,7 +172,10 @@ export default class Inventory extends Component {
     <section>
     <div {...getRootProps()}>
     <input {...getInputProps()} />
-    <Title>Click or Drag</Title>
+    <EditText>Click</EditText>
+    <EditText>Or</EditText>
+    <EditText>Drag</EditText>
+
     </div>
     </section>
   )}
@@ -186,5 +190,5 @@ export default class Inventory extends Component {
 }
 }
 // {() => this.state.isUploading ? <GridLoader/> : <p>Drop File or Click Here</p>}
-{/* <Sinput type='file' onChange={(e) => this.setState({url: URL.createObjectURL(e.target.files[0])})} />
-<img src={this.state.url} className= 'sampleImg' alt='sample'/> */}
+/* <Sinput type='file' onChange={(e) => this.setState({url: URL.createObjectURL(e.target.files[0])})} />
+<img src={this.state.url} className= 'sampleImg' alt='sample'/> */
