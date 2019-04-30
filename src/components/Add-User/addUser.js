@@ -8,7 +8,7 @@ width: 22%;
 background-color: rgba(99, 88, 165, 0.223);
 color: rgba(240, 248, 255, 0.808);
 font-size: 1.3rem;
-font-family: 'Orbitron', sans-serif;
+font-family: 'Merriweather', serif;
 padding: .3em;
 text-align: center;
 border: 1px solid white;
@@ -24,10 +24,11 @@ text-shadow: 2px 1px 1px black;
 `;
 
     const Title = styled.span`
-    font-size: 2.5em;
+    font-size: 2vw;
     font-weight: bold;
-    background-color: rgba(151, 140, 140, 0.688);
-    padding: .1em;
+    background-color: rgba(151, 140, 140, 0.588);
+    border: 3px groove; 
+    padding: 10px;
     margin: 5px;
     margin-top: 1.3em;
     border-radius: 1.3em;
@@ -46,7 +47,8 @@ text-shadow: 2px 1px 1px black;
     //Define our button, but with the use of props.theme this time
 const Button = styled.button`
   font-size: 2em;
-    background-color: rgba(99, 88, 165, 0.223);
+  background-color: rgba(99, 88, 165, 0.223);
+  cursor: pointer;
   border-radius: 3px;
   margin: 10px;
   border-radius: 1em;

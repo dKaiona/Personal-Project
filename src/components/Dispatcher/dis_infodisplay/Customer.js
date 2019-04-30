@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getCust} from '../../../ducks/dispatcherReducer'
 import styled, {ThemeProvider} from 'styled-components'
-import { SSL_OP_SINGLE_DH_USE } from 'constants';
+
 
 
 const Sinput = styled.input`

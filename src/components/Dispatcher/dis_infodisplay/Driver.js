@@ -8,7 +8,7 @@ width: 70%;
 background-color: rgba(99, 88, 165, 0.123);
 color: rgba(245, 243, 243, 0.89);
 font-size: 1.2rem;
-font-family: 'Orbitron', sans-serif;
+font-family: 'Merriweather', serif;
 padding: .1em;
 text-align: center;
 margin: .2rem; 

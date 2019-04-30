@@ -53,6 +53,13 @@ color: ${props => props.theme.main}
     border: 2px solid ${props => props.theme.main};
   `;
 
+  const InputWrapper = styled.div`
+${Sinput}:focus {
+  width: 17.5vw;
+  transition: .5s;
+}
+`
+
 // We are passing a default theme for Buttons that arent wrapped in the ThemeProvider
 Button.defaultProps = {
     theme: {
@@ -105,11 +112,17 @@ render() {
     {this.state.inventoryEdit ? (
       <div className= 'updateInfo'>
       <EditText>Name</EditText>
+      <InputWrapper>
       <Sinput type ='text' value = {`${this.state.itemName}`} onChange={this.handleChange} name = 'itemName'/>
+      </InputWrapper>
      <EditText>Count</EditText> 
+     <InputWrapper>
       <Sinput type ='text' value ={this.state.itemCount} onChange={this.handleChange} name = 'itemCount'/>
+     </InputWrapper>
       <EditText>Specs.</EditText>
+      <InputWrapper>
       <Sinput type ='text' value ={this.state.specs} onChange={this.handleChange} name = 'specs'/>
+      </InputWrapper>
       <Button onClick={() => this.props.updateItem(itemId, itemName, itemCount, specs)}>Update Item</Button>
       <Button  onClick={() => this.props.deleteItem(this.props.item)}>Delete Item</Button>
       <Button onClick={() => this.inventoryEdit()}>⇦</Button>

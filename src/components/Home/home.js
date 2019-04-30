@@ -6,9 +6,11 @@ import styled, {ThemeProvider} from 'styled-components'
 
 
     const Title = styled.span`
-    font-size: 3vw;
+    font-size: 2.6vw;
+    background-color: rgba(151, 140, 140, 0.588);
+    border: 3px groove; 
     font-weight: bold;
-    padding: 1vw;
+    padding: .5vw;
     margin: 1vw;
     border-radius: 1em;
     text-shadow: 2px 1px 1px black;
@@ -29,6 +31,8 @@ const Button = styled.button`
   border-radius: 3px;
   margin: 3vw;
   padding: 1vw;
+  cursor: pointer;
+  transition: .7s;
   border-radius: 1em;
   text-shadow: 2px 1px 1px black;
   letter-spacing: 1px;
@@ -49,10 +53,11 @@ const Button = styled.button`
 
 const Sinput = styled.input`
 width: 16.5vw;
+transition: .5s;
 background-color: rgba(99, 88, 165, 0.123);
 color: rgba(245, 243, 243, 0.89);
 font-size: 2vw;
-font-family: 'Orbitron', sans-serif;
+font-family: 'Merriweather', serif;
 padding: .1em;
 text-align: center;
 margin: .2rem; 
@@ -67,6 +72,21 @@ text-shadow: 2px 1px 1px black;
   width: 40vw
 };
 `;
+
+const WrapperButton = styled.div`
+&:hover ${Button}  {
+  text-shadow: 3px 3px 5px lightblue;
+  border: .2vw groove lightblue;
+  transition: 1s;
+}
+`
+const InputWrapper = styled.div`
+${Sinput}:focus {
+  width: 19vw;
+  transition: .5s;
+  background-color: rgba(151, 140, 140, 0.688);
+}
+`
 
 // We are passing a default theme for Buttons that arent wrapped in the ThemeProvider
 Button.defaultProps = {
@@ -112,11 +132,19 @@ constructor(props) {
             <img className='run' src='https://svgsilh.com/svg_v2/2027575.svg' alt='logo'/>
             </header>              
             <div className='homeMain'>
+            
                 <Title>Handle</Title>
+                <InputWrapper>
                 <Sinput type='text' value={this.state.handle} onChange={(e) => this.setState({handle: e.target.value})}/>
+                </InputWrapper>
                 <Title>Password</Title>
+                <InputWrapper>
                 <Sinput type='password' onChange={(e) => this.setState({password: e.target.value})} value={this.state.password} />
+                </InputWrapper>
+                <WrapperButton>
                 <Button onClick={() => this.loginDispatcher()}>Login</Button>
+                </WrapperButton>
+            
             </div>
             </div>
             </ThemeProvider>

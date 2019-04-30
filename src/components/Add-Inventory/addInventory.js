@@ -8,11 +8,12 @@ import { v4 as randomString} from 'uuid'
 
 
   const Sinput = styled.input`
-  width: 22%;
+  width: 18vw;
+  transition: .5s;
   background-color: rgba(99, 88, 165, 0.123);
   color: rgba(245, 243, 243, 0.89);
   font-size: 1.3rem;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Merriweather', serif;
   padding: .5em;
   text-align: center;
   border: 1px solid white;
@@ -29,6 +30,8 @@ import { v4 as randomString} from 'uuid'
     const Title = styled.span`
     font-size: 2vw;
     font-weight: bold;
+    background-color: rgba(151, 140, 140, 0.588);
+    border: 3px groove; 
     padding: 10px;
     margin: 1em;
     border-radius: 1em;
@@ -43,15 +46,16 @@ import { v4 as randomString} from 'uuid'
     //Define our button, but with the use of props.theme this time
 const Button = styled.button`
   font-size: 2em;
-    background-color: rgba(99, 88, 165, 0.255);
-  border-radius: 3px;
-  margin: 1em;
-  border-radius: 1em;
+  background-color: rgba(99, 88, 165, 0.255);
+  margin: .5vw;
+  padding: .5vw
+  border-radius: 3vw;
+  transition: .6s;
   text-shadow: 2px 1px 1px black;
   letter-spacing: 1px;
   /* Color the border and text with theme.main */
   color: ${props => props.theme.main};
-  border: 2px solid ${props => props.theme.main};
+  border: .1vw solid ${props => props.theme.main};
 `;
 const EditText = styled.span`
 font-size: 2em;
@@ -59,6 +63,21 @@ padding: .5em;
 text-shadow: 2px 1px 1px black;
 color: ${props => props.theme.main};
 `;
+
+const WrapperButton = styled.div`
+&:hover ${Button}  {
+  text-shadow: 3px 3px 5px lightblue;
+  border: .1vw groove lightblue;
+  transition: 1s;
+}
+`
+const InputWrapper = styled.div`
+${Sinput}:focus {
+  width: 22vw;
+  transition: .5s;
+  background-color: rgba(151, 140, 140, 0.688);
+}
+`
 
 
 
@@ -142,11 +161,17 @@ export default class Inventory extends Component {
       <div className='main'>
                
         <Title>Item Name</Title>
+        <InputWrapper>
         <Sinput type='text' onChange={(e) => this.setState({itemName: e.target.value})} value={this.state.itemName} />
-      <Title>Item Count</Title>
+        </InputWrapper>
+        <Title>Item Count</Title>
+        <InputWrapper>
         <Sinput type='number' onChange={(e) => this.setState({itemCount: e.target.value})} value={this.state.itemCount} />
+        </InputWrapper>
         <Title>Item Specs.</Title>
+        <InputWrapper>
         <Sinput type='text' onChange={(e) => this.setState({itemSpecs: e.target.value})} value={this.state.itemSpecs} />
+        </InputWrapper>
         <Title>Item Image</Title>
   <img src ={this.state.url} alt='' width='100px' style={{borderRadius: 35}}/>
   <Dropzone 
@@ -180,9 +205,12 @@ export default class Inventory extends Component {
     </section>
   )}
   </Dropzone>
-    
+    <WrapperButton>
       <Button onClick={() => this.addItem()}>Add Item</Button>
+    </WrapperButton>
+    <WrapperButton>
       <Link to ={'/dispatcher'}><Button>⇦</Button></Link>
+    </WrapperButton>
   </div>
         </ThemeProvider>
 
