@@ -47,8 +47,10 @@ body, html {
 
 .sampleImg {
     color: rgba(247, 247, 247, 0.911);
-    box-shadow: 5px 5px rgba(245, 245, 245, 0.116);
+    box-shadow: .4rem .4rem rgba(245, 245, 245, 0.116);
     border-radius: 21px;
+    width: 7vw;
+    padding: .1vw;
     
 }
 
@@ -253,6 +255,10 @@ overflow: auto;
         flex-direction: column;
         align-items: center;
         font-size: 5vw;
+    }
+    .sampleImg{
+        box-shadow: .1rem .1rem rgba(245, 245, 245, 0.116);
+        width: 10vw;
     }
 }
 

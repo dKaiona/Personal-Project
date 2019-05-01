@@ -85,6 +85,12 @@ ${Sinput}:focus {
   width: 19vw;
   transition: .5s;
   background-color: rgba(151, 140, 140, 0.688);
+  @media (max-width: 900px) {
+    width: 33vw;
+  };
+  @media (max-width: 500px) {
+    width: 45vw
+  };
 }
 `
 

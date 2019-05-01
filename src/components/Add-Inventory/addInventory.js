@@ -9,10 +9,10 @@ import { v4 as randomString} from 'uuid'
 
   const Sinput = styled.input`
   width: 18vw;
-  transition: .5s;
+  transition: .2s;
   background-color: rgba(99, 88, 165, 0.123);
   color: rgba(245, 243, 243, 0.89);
-  font-size: 1.3rem;
+  font-size: 1.5vw;
   font-family: 'Merriweather', serif;
   padding: .5em;
   text-align: center;
@@ -22,7 +22,7 @@ import { v4 as randomString} from 'uuid'
   text-shadow: 2px 1px 1px black;
   @media (max-width: 700px) {
     width: 8em;
-    font-size:1rem;
+    font-size:4.5vw;
     padding: .1em;
   }
   `;
@@ -39,7 +39,8 @@ import { v4 as randomString} from 'uuid'
     letter-spacing: 8px;
     color: ${props => props.theme.main};
     @media (max-width: 700px) {
-      font-size: 1.5em;
+      font-size: 4vw;
+    }
     `;
 
     
@@ -55,13 +56,19 @@ const Button = styled.button`
   letter-spacing: 1px;
   /* Color the border and text with theme.main */
   color: ${props => props.theme.main};
-  border: .1vw solid ${props => props.theme.main};
+  border: .2vw solid ${props => props.theme.main};
+  @media (max-width: 700px) {
+    font-size: 6vw;
+  }
 `;
 const EditText = styled.span`
 font-size: 2em;
 padding: .5em;
 text-shadow: 2px 1px 1px black;
 color: ${props => props.theme.main};
+@media (max-width: 700px) {
+  font-size: 6vw;
+}
 `;
 
 const WrapperButton = styled.div`
@@ -76,6 +83,13 @@ ${Sinput}:focus {
   width: 22vw;
   transition: .5s;
   background-color: rgba(151, 140, 140, 0.688);
+  @media (max-width: 900px) {
+    width: 33vw;
+  };
+  @media (max-width: 500px) {
+    font-size:1.8rem;
+    width: 45vw;
+  };
 }
 `
 
@@ -173,7 +187,7 @@ export default class Inventory extends Component {
         <Sinput type='text' onChange={(e) => this.setState({itemSpecs: e.target.value})} value={this.state.itemSpecs} />
         </InputWrapper>
         <Title>Item Image</Title>
-  <img src ={this.state.url} alt='' width='100px' style={{borderRadius: 35}}/>
+  <img src ={this.state.url} alt='' width='88vw' style={{borderRadius: 35}}/>
   <Dropzone 
   onDropAccepted={this.getSignedRequest}
   style={{

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import styled, {ThemeProvider} from 'styled-components'
 import {connect} from 'react-redux'
 import {getItems, deleteItem, updateItem} from '../../../ducks/dispatcherReducer'
+import styled, {ThemeProvider} from 'styled-components'
 
 const Sinput = styled.input`
 width: 15vw;
@@ -57,6 +57,12 @@ color: ${props => props.theme.main}
 ${Sinput}:focus {
   width: 17.5vw;
   transition: .5s;
+  @media (max-width: 900px) {
+    width: 33vw;
+  };
+  @media (max-width: 500px) {
+    width: 45vw;
+  };
 }
 `
 
